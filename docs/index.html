@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympic RolePlay | Главная</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        body {
+            background: #0f0f0f;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            animation: slideDown 0.8s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        .logo {
+            height: 70px;
+            transition: transform 0.3s;
+        }
+        .logo:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center; /* Выравнивание по центру */
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px; /* Увеличил текст */
+            transition: 0.3s;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: #ffcc00;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ffcc00;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .social-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s;
+            animation: popIn 0.6s ease-out backwards;
+            animation-delay: 0.3s;
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .social-btn:hover {
+            transform: scale(1.15) rotate(10deg);
+        }
+        .social-btn img {
+            width: 28px;
+            height: 28px;
+        }
+        .hero {
+            padding: 200px 5% 80px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            text-shadow: 0 2px 10px rgba(255, 204, 0, 0.3);
+        }
+        p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .play-btn {
+            background: #ffcc00;
+            color: #000;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-bottom: 50px;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+        }
+        .play-btn:hover {
+            background: #ffdd33;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.4);
+        }
+        .screenshots {
+            padding: 0 5% 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            animation: fadeIn 1s ease-out;
+        }
+        .screenshots img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: 0.5s;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .screenshots img:nth-child(1) { animation-delay: 0.3s; }
+        .screenshots img:nth-child(2) { animation-delay: 0.5s; }
+        .screenshots img:nth-child(3) { animation-delay: 0.7s; }
+        .screenshots img:hover {
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        .download-section {
+            text-align: center;
+            padding: 0 5% 50px;
+            animation: fadeIn 1s ease-out;
+        }
+        .download-btn {
+            background: #ff3333;
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+        }
+        .download-btn:hover {
+            background: #ff5555;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 51, 51, 0.4);
+        }
+        .server-monitoring {
+            background: #111;
+            padding: 30px 5%;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        .server-monitoring h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        .server-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .server-card {
+            background: #222;
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+        .server-card:hover {
+            transform: translateY(-5px);
+            background: #2a2a2a;
+        }
+        .server-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+        .server-ip {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .server-status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ff00;
+            margin-right: 8px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .footer {
+            background: #0a0a0a;
+            padding: 20px 5%;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <img src="images/logo.png" alt="Olympic RolePlay" class="logo">
+        <nav class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="forum.html">Форум (тех.работы)</a>
+            <a href="factions.html">Фракции (тех.работы)</a>
+        </nav>
+        <div class="social-buttons">
+            <a href="https://t.me/+RoZZASbL14owYzMy" class="social-btn" target="_blank">
+                <img src="images/icons/telegram.svg" alt="Telegram">
+            </a>
+            <a href="https://www.youtube.com/@Olympic-Rp" class="social-btn" target="_blank">
+                <img src="images/icons/youtube.png" alt="YouTube">
+            </a>
+            <a href="https://boosty.to/cordkill" class="social-btn" target="_blank">
+                <img src="images/icons/boosty.png" alt="Boosty">
+            </a>
+        </div>
+    </header>
+
+    <!-- Текст и кнопка "Начать играть" -->
+    <section class="hero">
+        <h1>Olympic RolePlay</h1>
+        <p>Погрузитесь в атмосферу самого динамичного ролевого сервера в GTA: San Andreas!</p>
+        <button class="play-btn" onclick="scrollToDownload()">Начать играть</button>
+    </section>
+
+    <!-- Скриншоты -->
+    <div class="screenshots">
+        <img src="images/screenshots/1.png" alt="Скриншот 1">
+        <img src="images/screenshots/2.png" alt="Скриншот 2">
+        <img src="images/screenshots/3.png" alt="Скриншот 3">
+    </div>
+
+    <!-- Кнопка скачивания -->
+    <div class="download-section">
+        <button class="download-btn" onclick="downloadInstaller()">Скачать установщик (3.4 GB)</button>
+    </div>
+
+    <!-- Мониторинг серверов -->
+    <div class="server-monitoring">
+        <h2>Наши серверы</h2>
+        <div class="server-list">
+            <div class="server-card">
+                <div class="server-name">Oregon</div>
+                <div class="server-ip"><span class="server-status"></span>188.127.241.74:1869</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <p>© 2025 Olympic Project. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Прокрутка к кнопке скачивания
+        function scrollToDownload() {
+            document.querySelector('.download-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Загрузка файла
+        function downloadInstaller() {
+            const link = document.createElement('a');
+            link.href = 'files/OlympicRP_Installer.exe';
+            link.download = 'OlympicRP_Installer.exe';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Анимация загрузки скринов
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.screenshots img');
+            images.forEach((img, index) => {
+                img.style.animationDelay = `${0.3 + index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html>
